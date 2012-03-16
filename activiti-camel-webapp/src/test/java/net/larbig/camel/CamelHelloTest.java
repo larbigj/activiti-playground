@@ -10,6 +10,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class CamelHelloTest {
+	
+	@Test
+	public void doNothing(){
+	}
 
 //	@Test
 //	public void runMyTest() throws Exception {
