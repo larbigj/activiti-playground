@@ -1,13 +1,14 @@
 package net.larbig.camel;
 
-import java.util.Collections;
-
-import org.activiti.camel.ActivitiProducer;
-import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
+//import java.util.Collections;
+//
+//import org.activiti.camel.ActivitiProducer;
+//import org.apache.camel.CamelContext;
+//import org.apache.camel.ProducerTemplate;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 
 public class CamelHelloTest {
 	
