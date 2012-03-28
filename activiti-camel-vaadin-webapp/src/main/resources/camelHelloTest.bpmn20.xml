@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.bpmnwithactiviti.org">
   <process id="camelProcessName" name="camelProcessName">
+    <documentation>out:println "magic scripting task"</documentation>
     <startEvent id="start" name="Start"></startEvent>
     <serviceTask id="serviceTask1" name="Service Task 1" activiti:delegateExpression="${camel}"></serviceTask>
     <receiveTask id="waitState" name="Wait"></receiveTask>
@@ -9,7 +10,11 @@
     <sequenceFlow id="flow2" name="" sourceRef="serviceTask1" targetRef="waitState"></sequenceFlow>
     <serviceTask id="servicetask2" name="Service Task 2" activiti:class="net.larbig.camel.FinishTask"></serviceTask>
     <sequenceFlow id="flow3" name="" sourceRef="waitState" targetRef="servicetask2"></sequenceFlow>
-    <sequenceFlow id="flow4" name="" sourceRef="servicetask2" targetRef="theEnd"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy">
+      <script><![CDATA[out:println "magic scripting task ";]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow4" name="" sourceRef="servicetask2" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow5" name="" sourceRef="scripttask1" targetRef="theEnd"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_camelProcessName">
     <bpmndi:BPMNPlane bpmnElement="camelProcessName" id="BPMNPlane_camelProcessName">
@@ -23,10 +28,13 @@
         <omgdc:Bounds height="55" width="105" x="250" y="190"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
-        <omgdc:Bounds height="35" width="35" x="580" y="200"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="720" y="510"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
         <omgdc:Bounds height="55" width="105" x="420" y="190"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55" width="105" x="420" y="340"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="65" y="217"></omgdi:waypoint>
@@ -41,8 +49,13 @@
         <omgdi:waypoint x="420" y="217"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
-        <omgdi:waypoint x="525" y="217"></omgdi:waypoint>
-        <omgdi:waypoint x="580" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="472" y="245"></omgdi:waypoint>
+        <omgdi:waypoint x="472" y="340"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="525" y="367"></omgdi:waypoint>
+        <omgdi:waypoint x="737" y="367"></omgdi:waypoint>
+        <omgdi:waypoint x="737" y="510"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
